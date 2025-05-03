@@ -10,7 +10,6 @@ import { DatabaseModule } from "./database/database.module";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { ResponseInterceptor } from "./interceptors/response.interceptor";
 import { CommonModule } from "./common/common.module";
-import { ClientsModule, Transport } from "@nestjs/microservices";
 
 export const CHAT_CLIENT_NAME = "CHAT_SERVICE";
 
@@ -33,19 +32,6 @@ export const CHAT_CLIENT_NAME = "CHAT_SERVICE";
         };
       }
     }),
-    ClientsModule.register([
-      {
-        name: CHAT_CLIENT_NAME,
-        transport: Transport.RMQ,
-        options: {
-          urls: ["amqp://localhost:5672"],
-          queue: "chat_queue",
-          queueOptions: {
-            durable: false
-          }
-        }
-      }
-    ]),
     DatabaseModule,
     ChatModule,
     UserModule,

@@ -20,7 +20,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   constructor(
     private readonly chatService: ChatService,
     @Inject(CHAT_CLIENT_NAME) private client: ClientProxy
-  ) {}
+  ) {
+    console.log("ChatGateway initialized");
+  }
 
   handleConnection(client: Socket) {
     console.log(`Client connected: ${client.id}`);
