@@ -12,6 +12,12 @@ export class Chat extends Document {
 
   @Prop({ required: true })
   content: string;
+
+  @Prop({ default: false, type: Boolean })
+  isSent: boolean;
+
+  @Prop({ default: false, type: Boolean })
+  isRead: boolean;
 }
 
 export const ChatSchema = SchemaFactory.createForClass(Chat);

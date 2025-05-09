@@ -32,12 +32,10 @@ export class UserController {
 
   @Get("profile")
   async getUserProfile(@User() user: TokenPayload) {
-    const userProfile = await this.userService.findById(user.id);
+    const userData = await this.userService.findById(user.id);
     return {
       message: "Profile retrieved successfully",
-      data: {
-        userProfile
-      }
+      data: userData
     };
   }
 

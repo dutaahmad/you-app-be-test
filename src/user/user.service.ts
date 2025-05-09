@@ -142,6 +142,19 @@ export class UserService {
     return user;
   }
 
+  async verifyUndecodedToken(token: string) {
+    try {
+      const decoded = this.jwtService.decode(token);
+      if (!decoded) {
+        throw new UnauthorizedException("Invalid token");
+      }
+      return await this.getUserFromCache(decoded.id);
+    } catch (err) {
+      console.log(err);
+      throw new UnauthorizedException("Invalid token");
+    }
+  }
+
   async verifyToken(decodedToken: TokenPayload) {
     try {
       const decodedCahedToken = await this.getUserFromCache(decodedToken.id);

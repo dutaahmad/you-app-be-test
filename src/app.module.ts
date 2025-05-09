@@ -26,8 +26,10 @@ export const CHAT_CLIENT_NAME = "CHAT_SERVICE";
         const db_host = configService.get<string>("MONGO_HOST");
         const db_port = configService.get<string>("MONGO_PORT");
         const db_name = configService.get<string>("MONGO_DB");
+        const DB_URI = `${db_host}:${db_port}/${db_name}`;
+        console.log({ DB_URI });
         return {
-          uri: `${db_host}:${db_port}/${db_name}`,
+          uri: DB_URI,
           autoCreate: true
         };
       }
